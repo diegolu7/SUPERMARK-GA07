@@ -3,7 +3,7 @@ import java.util.Scanner;
 
 public class main {
 
-	public static void main(String[] args) throws SQLException {
+	public static void main(String[] args) throws SQLException {/*
 		Scanner teclado = new Scanner(System.in);
 		
 		System.out.println("Ingrese Email");
@@ -13,7 +13,13 @@ public class main {
 		String pass = teclado.next();
 		
 		Login login = new Login(email,pass);
-		login.ingresar();
+		Usuario user = login.ingresar();
+		
+		if(user != null) {
+			System.out.println("Welcome "+user.getApellido()+", "+user.getNombre()+" ✅");
+		}else {
+			System.out.println("No pudimos acceder a tu cuenta ❌");
+		}
 		
 		//programamos
 		//Menu IF(ADMIN) / USUARIO
@@ -26,7 +32,10 @@ public class main {
 		//2 -> USUARIO NORMAL : (LOGEARSE/REGISTRARSE)
 		//3 si Logeado -> instanciamos USUARIO
 		
-		//
+		// */
+		Registro registro1 = new Registro();
+		registro1.Registrar();
+		registro1.validarDatos();
 	} 
 
 }
