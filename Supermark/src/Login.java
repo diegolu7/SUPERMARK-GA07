@@ -27,7 +27,7 @@ public class Login {
 		
 		ResultSet rs = conexion.devuelveConsulta(sql);
 		while(rs.next()){
-			System.out.println("ingreso correcto");
+			System.out.println("_____________Bienvenido; "+this.email+"_____________");
 		}
 	}
 }
