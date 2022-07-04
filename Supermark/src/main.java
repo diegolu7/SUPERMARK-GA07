@@ -70,7 +70,7 @@ public class main {
 	            	//OK
 	            break;
 	            default:
-	            System.out.println("No es una opcion valida.");
+	            System.out.println("No es una opcion valida. ❌");
 
 	        }
 	    } while (op!=4);        
