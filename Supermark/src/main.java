@@ -1,7 +1,20 @@
+import java.sql.SQLException;
+import java.util.Scanner;
 
 public class main {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws SQLException {
+		Scanner teclado = new Scanner(System.in);
+		
+		System.out.println("Ingrese Email");
+		String email = teclado.next();
+		
+		System.out.println("Ingrese Contrasena");
+		String pass = teclado.next();
+		
+		Login login = new Login(email,pass);
+		login.ingresar();
+		
 		//programamos
 		//Menu IF(ADMIN) / USUARIO
 		//do{    
