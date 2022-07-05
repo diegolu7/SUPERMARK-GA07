@@ -6,6 +6,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import com.mysql.cj.x.protobuf.MysqlxCrud.Insert;
+import com.mysql.cj.x.protobuf.MysqlxCrud.Update;
+import com.mysql.cj.xdevapi.Result;
+
 
 public class Conexion {
 
@@ -17,7 +21,7 @@ public class Conexion {
 		 final String DB_URL = "jdbc:mysql://localhost:3306/supermercado";
 		 //Credenciales de la BDD
 		 final String USER = "root";
-		 final String PASS = "password";
+		 final String PASS = "Concatenacionx100.-.";
 
 		 
 		 try {
@@ -42,4 +46,6 @@ public class Conexion {
 		
 		return rs;
 	}
+	
+	
 }

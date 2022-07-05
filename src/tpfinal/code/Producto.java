@@ -1,57 +1,65 @@
 package tpfinal.code;
 
+import java.sql.Connection;
 import java.sql.Date;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+
+import javax.sql.StatementEvent;
+
+import com.mysql.cj.x.protobuf.MysqlxSql.StmtExecute;
 
 //atributos
 public class Producto {
-	private int idProducto;
-	private String nombreProducto;
+	private int id_producto;
+	private String nombre;
 	private int stock;
-	private Date fechaVenc;
+	private Date fecha_vencimiento;
 	private double precio;
-	private String nombre_categoria;
+	private String categoria;
 	
 //constructor	
-public Producto(int idProducto, String nombreProducto, int stock, Date fechaVenc, double precio, String nombre_categoria) {
-		this.idProducto = idProducto;
-		this.nombreProducto = nombreProducto;
+public Producto(int id_producto, String nombre, int stock, Date fecha_vencimiento, double precio, String categoria) {
+		this.id_producto = id_producto;
+		this.nombre = nombre;
 		this.stock = stock;
-		this.fechaVenc = fechaVenc;
+		this.fecha_vencimiento = fecha_vencimiento;
 		this.precio = precio;
-		this.nombre_categoria = nombre_categoria;
+		this.categoria = categoria;
 }
 		
 
-public Producto(int idProducto, String nombreProducto, int stock, double precio, String nombre_categoria) {
-			this.idProducto = idProducto;
-			this.nombreProducto = nombreProducto;
-			this.stock = stock;
-			this.precio = precio;
-			this.nombre_categoria = nombre_categoria;
+public Producto(int id_producto, String nombre, int stock, double precio, String categoria) {
+	this.id_producto = id_producto;
+	this.nombre = nombre;
+	this.stock = stock;
+	this.precio = precio;
+	this.categoria = categoria;
+}
 
-	
-	}
+
 
 //getters & setters
-public int getIdProducto() {
-	return idProducto;
+
+public int getId_producto() {
+	return id_producto;
 }
 
 
-public void setIdProducto(int idProducto) {
-	this.idProducto = idProducto;
+public void setId_producto(int id_producto) {
+	this.id_producto = id_producto;
 }
 
 
-public String getNombreProducto() {
-	return nombreProducto;
+public String getNombre() {
+	return nombre;
 }
 
 
-public void setNombreProducto(String nombreProducto) {
-	this.nombreProducto = nombreProducto;
+public void setNombre(String nombre) {
+	this.nombre = nombre;
 }
 
 
@@ -65,13 +73,13 @@ public void setStock(int stock) {
 }
 
 
-public Date getFechaVenc() {
-	return fechaVenc;
+public Date getFecha_vencimiento() {
+	return fecha_vencimiento;
 }
 
 
-public void setFechaVenc(Date fechaVenc) {
-	this.fechaVenc = fechaVenc;
+public void setFecha_vencimiento(Date fecha_vencimiento) {
+	this.fecha_vencimiento = fecha_vencimiento;
 }
 
 
@@ -84,20 +92,23 @@ public void setPrecio(double precio) {
 	this.precio = precio;
 }
 
-public String getnNombre_Categoria() {
-	return nombre_categoria;
+
+public String getCategoria() {
+	return categoria;
 }
 
 
-public void setNombre_Categoria(String nombre_categoria) {
-	this.nombre_categoria = nombre_categoria;
+public void setCategoria(String categoria) {
+	this.categoria = categoria;
 }
-	
+
+
+
 //otros metodos
 
 public void consultarProducto() throws SQLException {
 	Conexion conexion = new Conexion();
-	String consulta = "select * from producto where nombre = "+"'"+this.nombreProducto+"'";
+	String consulta = "select * from producto where nombre = "+"'"+this.nombre+"'";
 	
 	ResultSet rs = conexion.devuelveConsulta(consulta);
 	
@@ -109,22 +120,10 @@ public void consultarProducto() throws SQLException {
 	}
 }
 
-public void agregarProducto() throws SQLException {
-	Conexion conexion = new Conexion();
-	String consulta = "INSERT INTO `supermercado`.`producto`"
-	+"(`id_producto`, `nombre`, `stock`, `precio`, `nombre_categoria`) VALUES"
-	+"('"+this.idProducto+"','"+this.nombreProducto+"','"+this.stock+"','"+this.precio+"','"+this.nombre_categoria+"')";
-	
-	ResultSet rs = conexion.devuelveConsulta(consulta);
-	
-	if(rs.next()) {
-			System.out.println("El producto se ha agregado correctamente");
-			
-	} else {
-		System.out.println("Error de conexion");
-	}
-}
 
+
+public void agregarProducto() throws SQLException {
+}
 //public void eliminarProducto() {}
 
 //public void modificarStock(){ }
