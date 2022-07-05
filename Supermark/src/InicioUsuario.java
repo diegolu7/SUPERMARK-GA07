@@ -1,3 +1,5 @@
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Scanner;
 
 public class InicioUsuario {
@@ -9,7 +11,7 @@ public class InicioUsuario {
 		this.conexion= new Conexion();
 	}
 	
-	public void mostrarMenu() {
+	public void mostrarMenu() throws SQLException {
 		System.out.println("Welcome: "+this.user.getApellido()+", "+this.user.getNombre());
 		Scanner teclado = new Scanner(System.in);
 		int op=0;
@@ -50,6 +52,25 @@ public class InicioUsuario {
 			        	//DEBERIA TOMAR LOS OP DE LA DB????????????????????????
 			        	//DEBERIA TOMAR LOS OP DE LA DB????????????????????????
 			        	//DEBERIA TOMAR LOS OP DE LA DB????????????????????????
+			        	//sql = traer * where id .. ... .. .
+			        	this.conexion = new Conexion();
+			    		String consulta = "select * from productos where id_categoria=" + "'" +op2+"'";
+			    		
+			    		ResultSet rs = this.conexion.devuelveConsulta(consulta);
+			    		while(rs.next()) {
+			    			//nom stock precio
+			    			String nom = rs.getString("NOMBRE");
+			    			int stock = rs.getInt("STOCK");
+			    			float precio = rs.getFloat("precio");
+			    			System.out.println("____________________________________________________________");
+			    			System.out.println("Producto: "+nom+" - Stock: "+stock+" - precio: $"+precio);
+			    			System.out.println("____________________________________________________________");
+			    			
+			    		}
+
+			        	
+			        	
+			        	//
 			        }else if(op2 == 6) {
 			        	System.out.println("SALISTE DE CATEGORIAS");
 			        }

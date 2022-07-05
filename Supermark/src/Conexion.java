@@ -24,7 +24,7 @@ public class Conexion {
 	}
 	public ResultSet devuelveConsulta(String sql) throws SQLException {
 		//System.out.println("Creando consulta...");
-		System.out.println("_______________________________________");
+		//System.out.println("_______________________________________");
 		Statement stmt = conn.createStatement();
 		ResultSet rs = stmt.executeQuery(sql);
 		
@@ -32,7 +32,7 @@ public class Conexion {
 		
 	}
 	public void realizaConsulta(String sql) throws SQLException {
-		System.out.println("Creando consulta...");
+		//System.out.println("Creando consulta...");
 		stmt = conn.createStatement();
 		stmt.executeUpdate(sql);
 	}
