@@ -1,8 +1,10 @@
 package tpfinal.code;
 
 
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Scanner;
 
 
@@ -10,12 +12,13 @@ public class Admin {
 
 	
 	Conexion conn= new Conexion();
-	//private String[][] matrizResultado;
+	private String[][] matrizResultado;
 	
 	public Admin(Usuario u) throws SQLException {
 	
 		Scanner t= new Scanner(System.in);
 		//menu
+		System.out.println("\n");
 		System.out.println("Menu del administrador");
 		System.out.println("1 Ver listado de productos");
 		System.out.println("2 Cargar productos");
@@ -29,15 +32,29 @@ public class Admin {
 				
 	
 		if (opcion==1) {
+			System.out.println("Elegiste: 1 Ver listado de productos");
 			String sql= "select * from producto;";
 			ResultSet rs= conn.devuelveConsulta(sql);
 			
-			System.out.println("id_producto |\t nombre |\t stock |\t fecha_vencimiento |\t precio |\t categoria");
+			System.out.println(" id_producto | nombre  | stock | precio | categoria");
 			
 			while (rs.next()) {
-				System.out.println(rs.getInt("id_producto")+"\t"+rs.getString("nombre")+"\t"+rs.getInt("stock")+"\t"+rs.getDate("fecha_vencimiento")+"\t"+rs.getDouble("precio")+"\t"+rs.getString("categoria"));
-	}
-			
+				System.out.println("\t"+rs.getInt("id_producto")+"\t"+rs.getString("nombre")+"\t"+rs.getInt("stock")+"\t"+rs.getDouble("precio")+"\t"+rs.getString("categoria"));
+	//como guardo esto en una matriz para que salga mas ordenado?		
+				}
+		
 		}
+	else if (opcion==2){
+		System.out.println("Elegiste: 2 Cargar productos");
+		
+		Producto productoNuevo = new Producto();
+		Principal principal = new Principal(productoNuevo);
+		
+	} else if (opcion==3){
+		System.out.println("Elegiste: 3 Modificar los datos de productos cargados");
+		Producto productoActualizado =new Producto();
+		ModificacionProd actualizacion = new ModificacionProd(productoActualizado);
+	}
+
 	}
 }
