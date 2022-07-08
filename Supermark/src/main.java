@@ -5,6 +5,7 @@ import java.util.Scanner;
 public class main {
 
 	public static void main(String[] args) throws SQLException {
+		Carrito carrito1 = new Carrito(0); //instancio un carrito vacio
 		Scanner ingreso =new Scanner(System.in);
 		int op=0;
 		do {
@@ -49,6 +50,7 @@ public class main {
 	      			System.out.println("Welcome: "+user.getApellido()+", "+user.getNombre()+"✅");
 	      			Scanner tecla2 = new Scanner(System.in);
 	      			int op_2=0;
+	      			
 	      				
 	      			do {
 	      				System.out.println("|- - - - - - - - - - - - - - - - - |");
@@ -98,12 +100,7 @@ public class main {
 		      				    			System.out.println("CODIGO: "+id_producto+" | PRODUCTO: "+nom+" | STOCK: "+stock+" | PRECIO: $"+precio);
 		      				    			System.out.println("-----------------------------------------------------------------------------------------------------");    				    			
 	      				    			}
-	      				    			Producto Producto1 = new Producto(id_producto,nom,stock,precio);
-	      				    			//this.productosDB.add(Producto1);
-	      				    			// ArrayList<Producto> carrito = new ArrayList();
-	      				    			//this.productosDB
 	      				    		}
-	      				    		//
 	      				    		Scanner teclado3 = new Scanner(System.in);
 	      				        	int op_3 = -1;
 	      				        	do{
@@ -112,14 +109,15 @@ public class main {
 	      				        		if(op_3 == 0) {
 	      				        			System.out.println("VOLVIENDO A CATEGORIAS...");
 	      				        		}else {
-	      				        			//carrito1.agregarCarrito(); //retorna True o False
-	      				        			System.out.println("AGREGADO AL CARRITO✅");
+	      				        			//Carrito carrito1 = new Carrito(0); //instancio un carrito vacio
+	      				        			
+	      				        			if(carrito1.agregarProducto(op_3)){ //le paso el id seleccionado
+	      				        				carrito1.listaProductos(op_3); //agrego a lista de productos seleccionados
+	      				        				System.out.println("AGREGADO AL CARRITO✅");
+	      				        				      				        			
+	      				        			}      				  				    
 	      				        		}
-	      				        	
-	      				        	} while (op_3!=0);  
-	      				        	
-	      				        	
-	      				        	//
+	      				        	} while (op_3!=0);     				        	
 	      				        }else if(op2 == 6) {
 	      				        	System.out.println("SALISTE DE CATEGORIAS");
 	      				        }
@@ -128,6 +126,12 @@ public class main {
 	      					break;
 	      				case 2:
 	      					//MOSTRAR CARRITO
+	      					if(carrito1.listaProductos().isEmpty()) {
+	      						System.out.println("NO HAY PRODUCTOS EN SU CARRITO ⚠️");
+	      					}else {
+	      						System.out.println("PRODUCTOS SELEECCIONADOS 🛒: ");
+	      						carrito1.mostrarCarrito();
+	      					}
 	      					break;
 	      				case 3:
 	      					//FINALIZAR COMPRA

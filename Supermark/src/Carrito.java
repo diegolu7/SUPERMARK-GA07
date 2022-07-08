@@ -1,20 +1,28 @@
+import java.sql.ResultSet;
 import java.util.ArrayList;
-
+import java.util.Iterator;
+import java.sql.SQLException;
 public class Carrito {
-	private ArrayList<Producto> productosDB = new ArrayList();
+	private int id_cliente;
+	private ArrayList<Integer> listaProductos = new ArrayList();
 	private int limite;
-	private float total;
-	public Carrito(ArrayList<Producto> productosDB, int limite, float total) {
-		super();
-		this.productosDB = productosDB;
+	private Conexion conexion;
+	private double total;
+	
+	public int getId_cliente() {
+		return id_cliente;
+	}
+	public void setId_cliente(int id_cliente) {
+		this.id_cliente = id_cliente;
+	}
+	public Carrito(int limite) {
 		this.limite = limite;
-		this.total = total;
 	}
-	public ArrayList<Producto> getProductosDB() {
-		return productosDB;
+	public ArrayList<Integer> listaProductos() {
+		return listaProductos;
 	}
-	public void setProductosDB(ArrayList<Producto> productosDB) {
-		this.productosDB = productosDB;
+	public void listaProductos(int id_prod) {
+		this.listaProductos.add(id_prod);
 	}
 	public int getLimite() {
 		return limite;
@@ -22,20 +30,46 @@ public class Carrito {
 	public void setLimite(int limite) {
 		this.limite = limite;
 	}
-	public float getTotal() {
+	public double getTotal() {
 		return total;
 	}
 	public void setTotal(float total) {
 		this.total = total;
 	}
-	public boolean agregarProducto() {	//ADD Producto
+	public void mostrarCarrito() throws SQLException { //construyo la expresion SQL
+		String sql = "SELECT * FROM `productos` where ID IN (";
+		for (int i = 0; i < this.listaProductos.size(); i++) {
+			//this.listaProductos.get(i);
+			if(i== this.listaProductos.size()-1) {
+				sql = sql+this.listaProductos.get(i)+")";	
+			}else {
+				sql = sql+this.listaProductos.get(i)+",";			
+			}
+		}
+		sql=sql+";";
+		this.conexion = new Conexion();
+		ResultSet rs = this.conexion.devuelveConsulta(sql);
+		while(rs.next()){
+			String nombre_produto = rs.getString("NOMBRE");	
+			double precio_produto = rs.getDouble("precio");	
+			System.out.println("-> "+nombre_produto+" Precio: "+precio_produto+"$ ✅");	
+		}
+		System.out.println("---> TOTAL:"+this.total+" $");
+	}
+	public boolean agregarProducto(int id) throws SQLException {	//ADD Producto
 		if(limite <= 30) {	//LIMITE DE PRODUCTOS 30
-			//voy a DB por el producto
-			//agrego producto/id a arraylist
-			//sumo a total
-			//retorno TRUE
+			this.conexion = new Conexion();
+			String sql = "SELECT * FROM `productos` where ID="+id+";";
+			ResultSet rs = this.conexion.devuelveConsulta(sql);
+			while(rs.next()){
+				String nombre_produto = rs.getString("NOMBRE");	
+				double precio_produto = rs.getDouble("precio");	
+				
+				System.out.println("-> "+nombre_produto+" Precio: "+precio_produto+"$ ✅");
+				this.total=this.total+precio_produto;		
+			}
 			return true;
-		}else {	
+		}else{		
 			return false;
 		}
 	}
