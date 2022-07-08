@@ -1,6 +1,5 @@
 import java.sql.ResultSet;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.sql.SQLException;
 public class Carrito {
 	private int id_cliente;
@@ -69,7 +68,8 @@ public class Carrito {
 				this.total=this.total+precio_produto;		
 			}
 			return true;
-		}else{		
+		}else{
+			System.out.println("Llego al limite de productos en su carrito!");
 			return false;
 		}
 	}
@@ -78,6 +78,4 @@ public class Carrito {
 			//resto el total
 			//retorno TRUE
 	}
-
 }
-
