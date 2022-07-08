@@ -7,18 +7,28 @@ public class main {
 		Scanner ingreso =new Scanner(System.in);
 		int op=0;
 		do {
+			System.out.println("\n"
+					+ "   _____                         __  __            _    \n"
+					+ "  / ____|                       |  \\/  |          | |   \n"
+					+ " | (___  _   _ _ __   ___ _ __  | \\  / | __ _ _ __| | __\n"
+					+ "  \\___ \\| | | | '_ \\ / _ | '__| | |\\/| |/ _` | '__| |/ /\n"
+					+ "  ____) | |_| | |_) |  __| |    | |  | | (_| | |  |   < \n"
+					+ " |_____/ \\__,_| .__/ \\___|_|    |_|  |_|\\__,_|_|  |_|\\_\\\n"
+					+ "              | |                                       \n"
+					+ "              |_|                                       \n"
+					);
 	        System.out.println("|- - - - - - - - - - - - - - - -|");
 	        System.out.println("|-------- SUPER MARK 🛒 --------|");
 	        System.out.println("|__________1 - CLIENTE__________|");
 	        System.out.println("|__________2 - REGISTRARSE______|");
-	        System.out.println("|__________3 - ADMINISTRAR______|");
+	        System.out.println("|__________3 - ADMIN____________|");
 	        System.out.println("|__________4 - SALIR____________|");
 	        System.out.println("|------ INGRESE UNA OPCIÓN:-----|");
 	        System.out.println("|- - - - - - - - - - - - - - - -|");
 	        op=Integer.parseInt(ingreso.next());
 	        switch (op){
 	            case 1:
-	              System.out.println("________CLIENTE________");
+	  	          System.out.println("|_______INGRESO CLIENTE:________|");
 	              Scanner teclado = new Scanner(System.in);
 	      		
 	      		  System.out.println("Ingrese Email");

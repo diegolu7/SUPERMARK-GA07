@@ -5,6 +5,7 @@ import java.util.Scanner;
 public class InicioUsuario {
 	private Usuario user;
 	private Conexion conexion;
+
 	
 	public InicioUsuario(Usuario user) {
 		this.user=user;
@@ -12,14 +13,15 @@ public class InicioUsuario {
 	}
 	
 	public void mostrarMenu() throws SQLException {
-		System.out.println("Welcome: "+this.user.getApellido()+", "+this.user.getNombre());
+		System.out.println("Welcome: "+this.user.getApellido()+", "+this.user.getNombre()+"✅");
 		Scanner teclado = new Scanner(System.in);
 		int op=0;
 		
 		
 		do {
-			System.out.println("|- - - - - - - - - - - - - - - -|");
+			System.out.println("|- - - - - - - - - - - - - - - - - |");
 	        System.out.println("|-----> Cliente: "+this.user.getApellido()+", "+this.user.getNombre());
+	        System.out.println("|____________MENU CLIENTES_________|");
 	        System.out.println("|__________1 - VER CATEGORIAS______|");
 	        System.out.println("|__________2 - VER MI CARRITO______|");
 	        System.out.println("|__________3 - FINALIZAR COMPRA____|");
@@ -34,8 +36,9 @@ public class InicioUsuario {
 				Scanner tecla = new Scanner(System.in);
 				int op2=0;
 				do {
-					System.out.println("|- - - - - - - - - - - - - - - -|");
+					System.out.println("|- - - - - - - - - - - - - - - - - |");
 			        System.out.println("|-----> Cliente: "+this.user.getApellido()+", "+this.user.getNombre());
+			        System.out.println("|___________CATEGORIAS_____________|");
 			        System.out.println("|__________1 - BEBIDAS_____________|");
 			        System.out.println("|__________2 - LACTEOS_____________|");
 			        System.out.println("|__________3 - CARNES______________|");
@@ -47,11 +50,6 @@ public class InicioUsuario {
 			        op2=tecla.nextInt();
 			        
 			        if(op2==1||op2==2||op2==3||op2==4||op2==5) {
-			        	//DEBERIA TOMAR LOS OP DE LA DB????????????????????????
-			        	//DEBERIA TOMAR LOS OP DE LA DB????????????????????????
-			        	//DEBERIA TOMAR LOS OP DE LA DB????????????????????????
-			        	//DEBERIA TOMAR LOS OP DE LA DB????????????????????????
-			        	//DEBERIA TOMAR LOS OP DE LA DB????????????????????????
 			        	//sql = traer * where id .. ... .. .
 			        	this.conexion = new Conexion();
 			    		String consulta = "select * from productos where id_categoria=" + "'" +op2+"'";
@@ -59,11 +57,13 @@ public class InicioUsuario {
 			    		ResultSet rs = this.conexion.devuelveConsulta(consulta);
 			    		while(rs.next()) {
 			    			//nom stock precio
+			    			int id_producto = rs.getInt("ID");
 			    			String nom = rs.getString("NOMBRE");
 			    			int stock = rs.getInt("STOCK");
 			    			float precio = rs.getFloat("precio");
-			    			System.out.println("____________________________________________________________");
-			    			System.out.println("Producto: "+nom+" - Stock: "+stock+" - precio: $"+precio);
+			    			System.out.println("------------------------------------------------------------");			
+			    			System.out.println("|ID				|PRODUCTO				| STOCK				| PRECIO");
+			    			System.out.println("|"+id_producto+"|"+nom+"|"+stock+"|"+precio);
 			    			System.out.println("____________________________________________________________");
 			    			
 			    		}
