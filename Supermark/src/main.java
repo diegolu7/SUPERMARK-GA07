@@ -93,12 +93,14 @@ public class main {
 	      				    			String nom = rs.getString("NOMBRE");
 	      				    			int stock = rs.getInt("STOCK");
 	      				    			float precio = rs.getFloat("precio");
-	      				    			System.out.println("-----------------------------------------------------------------------------------------------------");			
-	      				    			System.out.println("CODIGO: "+id_producto+" | PRODUCTO: "+nom+" | STOCK: "+stock+" | PRECIO: $"+precio);
-	      				    			System.out.println("-----------------------------------------------------------------------------------------------------");	
+	      				    			if(stock != 0) { //SOLO MUESTRO SI EXISTE STOCK
+		      				    			System.out.println("-----------------------------------------------------------------------------------------------------");			
+		      				    			System.out.println("CODIGO: "+id_producto+" | PRODUCTO: "+nom+" | STOCK: "+stock+" | PRECIO: $"+precio);
+		      				    			System.out.println("-----------------------------------------------------------------------------------------------------");    				    			
+	      				    			}
 	      				    			Producto Producto1 = new Producto(id_producto,nom,stock,precio);
 	      				    			//this.productosDB.add(Producto1);
-	      				    			//private ArrayList<Producto> carrito = new ArrayList();
+	      				    			// ArrayList<Producto> carrito = new ArrayList();
 	      				    			//this.productosDB
 	      				    		}
 	      				    		//
@@ -110,6 +112,7 @@ public class main {
 	      				        		if(op_3 == 0) {
 	      				        			System.out.println("VOLVIENDO A CATEGORIAS...");
 	      				        		}else {
+	      				        			//carrito1.agregarCarrito(); //retorna True o False
 	      				        			System.out.println("AGREGADO AL CARRITO✅");
 	      				        		}
 	      				        	
