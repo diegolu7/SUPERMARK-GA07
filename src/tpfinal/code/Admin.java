@@ -23,8 +23,9 @@ public class Admin {
 		System.out.println("1 Ver listado de productos");
 		System.out.println("2 Cargar productos");
 		System.out.println("3 Modificar los datos de productos cargados");
-		System.out.println("4 Ver todos los clientes que realizaron una compra");
-		System.out.println("5 Ver listado de productos seleccionados por el usuario");
+		System.out.println("4 Eliminar productos");
+		System.out.println("5 Ver todos los clientes que realizaron una compra");
+		System.out.println("6 Ver listado de productos seleccionados por el usuario");
 		
 		
 		System.out.println("Ingresa una opcion: ");
@@ -32,7 +33,7 @@ public class Admin {
 				
 	
 		if (opcion==1) {
-			System.out.println("Elegiste: 1 Ver listado de productos");
+			System.out.println("Elegiste ver listado de productos");
 			String sql= "select * from producto;";
 			ResultSet rs= conn.devuelveConsulta(sql);
 			
@@ -45,15 +46,19 @@ public class Admin {
 		
 		}
 	else if (opcion==2){
-		System.out.println("Elegiste: 2 Cargar productos");
+		System.out.println("Elegiste cargar productos");
 		
 		Producto productoNuevo = new Producto();
 		Principal principal = new Principal(productoNuevo);
 		
 	} else if (opcion==3){
-		System.out.println("Elegiste: 3 Modificar los datos de productos cargados");
+		System.out.println("Elegiste modificar los datos de productos cargados");
 		Producto productoActualizado =new Producto();
 		ModificacionProd actualizacion = new ModificacionProd(productoActualizado);
+	} else if(opcion==4) {
+		System.out.println("Elegiste eliminar productos");
+		Producto productoEliminado = new Producto();
+		EliminacionProd eliminacion = new EliminacionProd(productoEliminado);
 	}
 
 	}

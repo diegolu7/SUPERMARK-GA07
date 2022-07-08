@@ -189,7 +189,7 @@ public static void agregarProducto(int id_producto, String nombre, int stock, in
 			 System.out.println(sql);
 			 stmt.executeUpdate(sql);
 			 
-			 System.out.println("Productos agregados exitosamente!");
+			 System.out.println("Producto agregado exitosamente!");
 			 
 			 //Entorno de Limpieza
 			 stmt.close();
@@ -214,12 +214,60 @@ public static void agregarProducto(int id_producto, String nombre, int stock, in
 			 se.printStackTrace();
 			 	} 
 			 }
-
-		
 	
 }
 
-
+public static void eliminarProducto(int id_producto) throws SQLException{
+	// JDBC nombre del driver y URL de la database
+	String JDBC_DRIVER = "com.mysql.cj.jdbc.Driver"; 
+	String DB_URL = "jdbc:mysql://localhost:3306/supermercado";
+ // Credenciales de la database
+	String USER = "root";
+	String PASS = "Concatenacionx100.-.";
+	
+	 Connection conn = null;
+	 Statement stmt = null;
+	 
+	 try{
+	 //registra el JDBC driver
+	 Class.forName(JDBC_DRIVER);
+	 
+	 //crea una conexion
+	 System.out.println("Conectando a la base de datos...");
+	 conn = DriverManager.getConnection(DB_URL,USER,PASS);
+	 
+	 //Ejecutar una consulta SQL
+	 System.out.println("Generando consulta...");
+	 stmt = conn.createStatement();
+	 String sql =  MessageFormat.format("DELETE FROM producto WHERE id_producto = {0};", id_producto);	
+	 stmt.executeUpdate(sql);
+	 
+	 System.out.println("Producto eliminado exitosamente!");
+	 
+	 //Entorno de Limpieza
+	 stmt.close();
+	 conn.close();
+	 }catch(SQLException se){
+		 // Resuelve errores JDBC
+		 se.printStackTrace();
+	 }catch(Exception e){
+		 // Resuelve errores para Class.forName
+		 e.printStackTrace();
+	 }finally{
+//cierra recursos
+	 try{
+		 if(stmt!=null)
+			 stmt.close();
+	 }catch(SQLException se2){
+	 }
+	 try{
+		 if(conn!=null)
+			 conn.close();
+	 }catch(SQLException se){
+	 se.printStackTrace();
+	 	} 
+	 }
+}
 
 }
 
