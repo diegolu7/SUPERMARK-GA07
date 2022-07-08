@@ -1,11 +1,14 @@
-import java.sql.ResultSet;
+/*import java.sql.ResultSet;    //MIGRADO A MAIN
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class InicioUsuario {
 	private Usuario user;
 	private Conexion conexion;
-
+	private ArrayList<Producto> carrito = new ArrayList();
+	private ArrayList<Producto> productosDB = new ArrayList();
+	//private arrayLIST PRODUCTOS ID
 	
 	public InicioUsuario(Usuario user) {
 		this.user=user;
@@ -13,15 +16,15 @@ public class InicioUsuario {
 	}
 	
 	public void mostrarMenu() throws SQLException {
+		
 		System.out.println("Welcome: "+this.user.getApellido()+", "+this.user.getNombre()+"✅");
 		Scanner teclado = new Scanner(System.in);
 		int op=0;
-		
-		
+			
 		do {
 			System.out.println("|- - - - - - - - - - - - - - - - - |");
 	        System.out.println("|-----> Cliente: "+this.user.getApellido()+", "+this.user.getNombre());
-	        System.out.println("|____________MENU CLIENTES_________|");
+	        System.out.println("|____________MENU CLIENTES🟢_______|");
 	        System.out.println("|__________1 - VER CATEGORIAS______|");
 	        System.out.println("|__________2 - VER MI CARRITO______|");
 	        System.out.println("|__________3 - FINALIZAR COMPRA____|");
@@ -38,7 +41,7 @@ public class InicioUsuario {
 				do {
 					System.out.println("|- - - - - - - - - - - - - - - - - |");
 			        System.out.println("|-----> Cliente: "+this.user.getApellido()+", "+this.user.getNombre());
-			        System.out.println("|___________CATEGORIAS_____________|");
+			        System.out.println("|___________CATEGORIAS🔵___________|");
 			        System.out.println("|__________1 - BEBIDAS_____________|");
 			        System.out.println("|__________2 - LACTEOS_____________|");
 			        System.out.println("|__________3 - CARNES______________|");
@@ -61,13 +64,27 @@ public class InicioUsuario {
 			    			String nom = rs.getString("NOMBRE");
 			    			int stock = rs.getInt("STOCK");
 			    			float precio = rs.getFloat("precio");
-			    			System.out.println("------------------------------------------------------------");			
-			    			System.out.println("|ID				|PRODUCTO				| STOCK				| PRECIO");
-			    			System.out.println("|"+id_producto+"|"+nom+"|"+stock+"|"+precio);
-			    			System.out.println("____________________________________________________________");
-			    			
+			    			System.out.println("-----------------------------------------------------------------------------------------------------");			
+			    			System.out.println("ID: "+id_producto+" | PRODUCTO: "+nom+" | STOCK: "+stock+" | PRECIO: $"+precio);
+			    			System.out.println("-----------------------------------------------------------------------------------------------------");	
+			    			Producto Producto1 = new Producto(id_producto,nom,stock,precio);
+			    			this.productosDB.add(Producto1);
+			    			//private ArrayList<Producto> carrito = new ArrayList();
+			    			//this.productosDB
 			    		}
-
+			    		//
+			    		Scanner teclado3 = new Scanner(System.in);
+			        	int op_3 = -1;
+			        	do{
+			        		System.out.println("INGRESE EL ID DEL PRODUCTO PARA GUARDAR EN CARRITO! \"0\" PARA VOLVER A CATEGORIA");
+			        		op_3=teclado3.nextInt();
+			        		if(op_3 == 0) {
+			        			System.out.println("VOLVIENDO A CATEGORIAS...");
+			        		}else {
+			        			System.out.println("AGREGADO AL CARRITO✅");
+			        		}
+			        	
+			        	} while (op_3!=0);  
 			        	
 			        	
 			        	//
@@ -90,4 +107,4 @@ public class InicioUsuario {
 			}
 	    }while(op != 4);    
 	}
-}
+}*/
