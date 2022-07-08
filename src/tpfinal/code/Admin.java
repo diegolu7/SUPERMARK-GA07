@@ -5,6 +5,7 @@ import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.MessageFormat;
 import java.util.Scanner;
 
 
@@ -33,7 +34,7 @@ public class Admin {
 				
 	
 		if (opcion==1) {
-			System.out.println("Elegiste ver listado de productos");
+			System.out.println("Seleccionaste ver listado de productos");
 			String sql= "select * from producto;";
 			ResultSet rs= conn.devuelveConsulta(sql);
 			
@@ -44,22 +45,35 @@ public class Admin {
 	//como guardo esto en una matriz para que salga mas ordenado?		
 				}
 		
-		}
-	else if (opcion==2){
-		System.out.println("Elegiste cargar productos");
+		} 
+		else if (opcion==2){
+		System.out.println("Seleccionaste cargar productos");
 		
 		Producto productoNuevo = new Producto();
 		Principal principal = new Principal(productoNuevo);
 		
 	} else if (opcion==3){
-		System.out.println("Elegiste modificar los datos de productos cargados");
+		System.out.println("Seleccionaste modificar los datos de productos cargados");
 		Producto productoActualizado =new Producto();
 		ModificacionProd actualizacion = new ModificacionProd(productoActualizado);
+		
 	} else if(opcion==4) {
-		System.out.println("Elegiste eliminar productos");
+		System.out.println("Seleccionaste eliminar productos");
 		Producto productoEliminado = new Producto();
 		EliminacionProd eliminacion = new EliminacionProd(productoEliminado);
-	}
+	} else if(opcion==5) {
+		System.out.println("Seleccionaste ver todos los clientes que realizaron una compra");
+	
+		String sql= "SELECT usuario.id_usuario,nombre, apellido1 FROM usuario INNER JOIN cliente WHERE usuario.id_usuario = cliente.id_usuario AND cliente.realizo_compra = 1;";	
+		ResultSet rs= conn.devuelveConsulta(sql);
+	
+		System.out.println(" id_usuario | nombre  | apellido ");
+		
+		while (rs.next()) {
+			
+		System.out.println("\t"+rs.getInt("usuario.id_usuario")+"\t"+rs.getString("nombre")+"\t"+rs.getString("apellido1"));
+			}
+		}
 
 	}
 }

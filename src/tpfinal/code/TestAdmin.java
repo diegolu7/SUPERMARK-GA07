@@ -6,7 +6,7 @@ import java.sql.SQLException;
 public class TestAdmin {
 
 	public static void main(String[] args) throws SQLException {
-		Login login = new Login("juan@correo","1234");
+		Login login = new Login("juan@correo.com","1234");
 		ResultSet rs = login.Ingresar();
 
 		if(rs.next()) {
