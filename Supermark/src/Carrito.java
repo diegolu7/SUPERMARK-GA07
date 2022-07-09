@@ -1,7 +1,7 @@
 import java.sql.ResultSet;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.sql.SQLException;
+import java.time.LocalDate;
 public class Carrito {
 	private int id_cliente;
 	private ArrayList<Integer> listaProductos = new ArrayList();
@@ -69,15 +69,28 @@ public class Carrito {
 				this.total=this.total+precio_produto;		
 			}
 			return true;
-		}else{		
+		}else{
+			System.out.println("Llego al limite de productos en su carrito!");
 			return false;
 		}
 	}
-	public void eliminarProducto() {	//Remove Producto
+	public void registrarVenta() throws SQLException {
+		//registrar venta en DB
+	    LocalDate fecha_hoy = LocalDate.now();
+	    
+		for (int i = 0; i < this.listaProductos.size(); i++) {
+			String sql = "insert into venta values(null,"+"'"+fecha_hoy+"',"+"'"+this.total+"',"+"'"+this.id_cliente+"',"+"'"+i+"');";
+			//System.out.println(sql);
+			this.conexion = new Conexion();
+			this.conexion.realizaConsulta(sql);
+		}
+	}
+	public void actualizarStock() {
+		//actualizar stock! -> quitar productos vendidos!
+	}
+	public void eliminarProducto() {	//Remove Producto de carrito
 			//Elimino el id del array
 			//resto el total
 			//retorno TRUE
 	}
-
 }
-

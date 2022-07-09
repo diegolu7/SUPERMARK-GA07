@@ -41,12 +41,8 @@ public class main {
 	      		
 	      		  Login login = new Login(email,pass);
 	      		  Usuario user = login.ingresar();
-	      		
-	      		  if(user != null) {
-	      			  //MENU CLIENTE ETC....
-	      			  //InicioUsuario inicioU = new InicioUsuario(user);
-	      			  //inicioU.mostrarMenu();
-	      			  //-------
+	      		  
+	      		  if(user != null && user.getTipo()== 1) {
 	      			System.out.println("Welcome: "+user.getApellido()+", "+user.getNombre()+"✅");
 	      			Scanner tecla2 = new Scanner(System.in);
 	      			int op_2=0;
@@ -78,24 +74,23 @@ public class main {
 	      				        System.out.println("|__________3 - CARNES______________|");
 	      				        System.out.println("|__________4 - VERDURAS____________|");
 	      				        System.out.println("|__________5 - PERFUMERIA__________|");
-	      				        System.out.println("|__________6 - SALIR_______________|");
+	      				        System.out.println("|__________6 - <-VOLVER_ATRAS______|");
 	      				        System.out.println("|- - - - - - - - - - - - - - - - - |");
 	      				        System.out.println("| - - - ELIJE UNA OPCION: - - - - -|");	
 	      				        op2=tecla3.nextInt();
 	      				        
 	      				        if(op2==1||op2==2||op2==3||op2==4||op2==5) {
-	      				        	//sql = traer * where id .. ... .. .
+	      				        	//CORREGIR: DEBO TRAER LAS OP DE LA DB!!
 	      				        	Conexion conexionCat = new Conexion();
 	      				    		String consulta = "select * from productos where id_categoria=" + "'" +op2+"'";
 	      				    		
 	      				    		ResultSet rs = conexionCat.devuelveConsulta(consulta);
 	      				    		while(rs.next()) {
-	      				    			//nom stock precio
 	      				    			int id_producto = rs.getInt("ID");
 	      				    			String nom = rs.getString("NOMBRE");
 	      				    			int stock = rs.getInt("STOCK");
 	      				    			float precio = rs.getFloat("precio");
-	      				    			if(stock != 0) { //SOLO MUESTRO SI EXISTE STOCK
+	      				    			if(stock != 0) { //SOLO MUESTRO SI HAY STOCK
 		      				    			System.out.println("-----------------------------------------------------------------------------------------------------");			
 		      				    			System.out.println("CODIGO: "+id_producto+" | PRODUCTO: "+nom+" | STOCK: "+stock+" | PRECIO: $"+precio);
 		      				    			System.out.println("-----------------------------------------------------------------------------------------------------");    				    			
@@ -108,13 +103,10 @@ public class main {
 	      				        		op_3=teclado3.nextInt();
 	      				        		if(op_3 == 0) {
 	      				        			System.out.println("VOLVIENDO A CATEGORIAS...");
-	      				        		}else {
-	      				        			//Carrito carrito1 = new Carrito(0); //instancio un carrito vacio
-	      				        			
+	      				        		}else {      				        			
 	      				        			if(carrito1.agregarProducto(op_3)){ //le paso el id seleccionado
 	      				        				carrito1.listaProductos(op_3); //agrego a lista de productos seleccionados
-	      				        				System.out.println("AGREGADO AL CARRITO✅");
-	      				        				      				        			
+	      				        				System.out.println("AGREGADO AL CARRITO✅");			        			
 	      				        			}      				  				    
 	      				        		}
 	      				        	} while (op_3!=0);     				        	
@@ -135,26 +127,39 @@ public class main {
 	      					break;
 	      				case 3:
 	      					//FINALIZAR COMPRA
-	      					break;
+	      					System.out.println("FACTURA DE COMPRA:");
+      						carrito1.mostrarCarrito();
+      						System.out.println("FINALIZAR COMPRA = 1 | CANCELAR COMPRA 0");
+      						Scanner teclado5 =new Scanner(System.in);
+      						int respuesta=Integer.parseInt(teclado5.next());    						
+      						if(respuesta==1) {
+      							System.out.println("COMPRA EXITOSA! ✅");
+      							carrito1.setId_cliente(user.getId_user());
+      							carrito1.registrarVenta();
+      						}else {
+      							System.out.println("COMPRA CANCELADA ❌");
+      							carrito1.listaProductos().clear();
+      						}
+      						break;
 	      				case 4:
 	      					//SALIR
-	      			        System.out.println("| - - - CERRANDO SESSION... - - - - -|");	
+	      			        System.out.println("CERRANDO SESSION...");	
 	      					break;
 	      				}
 	      		    }while(op_2 != 4);    
 	      			  
 	      			  //-------
 	      		  }else {
-	      			  System.out.println("No pudimos acceder a tu cuenta ❌");
+	      			  System.out.println("No pudimos acceder a tu cuenta 'CLIENTE' ❌");
 	      		  }	      		  
-	      		  //AHORA INSTANCIAMOS UNA CLASE CLIENTE DONDE MOSTRAREMOS EL MENU PARA CLIENTES
+
 	            break;    
 	            case 2:
 	            	System.out.println("________REGISTRARSE________");
 		      		Registro registro1 = new Registro();
 		      		registro1.Registrar();
 		      		registro1.validarDatos();
-		      		//OK
+
 	            break;
 	            case 3:
 	              System.out.println("________ADMINISTRADOR________");
@@ -169,16 +174,19 @@ public class main {
 	      		  Login login1 = new Login(email3,pass3);
 	      		  Usuario user3 = login1.ingresar();
 	      		
-	      		  if(user3 != null) {
+      			 if(user3 != null && user3.getTipo()== 2) {
 	      			  System.out.println("ADMIN: "+user3.getApellido()+", "+user3.getNombre()+" ✅");
+	      			  
+	      			  //PROGRAMAMOS MENU ADMIN
+	      			  Venta ventas1 = new Venta();
+	      			  System.out.println("----------------------------------------HISTORIAL DE VENTAS----------------------------------------");
+	      			  ventas1.mostrarHistorial();
 	      		  }else {
-	      			  System.out.println("No pudimos acceder a tu cuenta ❌");
+	      			  System.out.println("No pudimos acceder a tu cuenta 'ADMIN' ❌");
 	      		  }
-	      		  //AHORA INSTANCIAMOS UNA CLASE ADMIN DONDE MOSTRAREMOS EL MENU PARA CLIENTES
 		        break;
 	            case 4:
 	            	System.out.println("Vuelva Pronto!👋");
-	            	//OK
 	            break;
 	            default:
 	            System.out.println("No es una opcion valida. ❌");
