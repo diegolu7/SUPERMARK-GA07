@@ -127,10 +127,23 @@ public class main {
 	      					break;
 	      				case 3:
 	      					//FINALIZAR COMPRA
-	      					break;
+	      					System.out.println("FACTURA DE COMPRA:");
+      						carrito1.mostrarCarrito();
+      						System.out.println("FINALIZAR COMPRA = 1 | CANCELAR COMPRA 0");
+      						Scanner teclado5 =new Scanner(System.in);
+      						int respuesta=Integer.parseInt(teclado5.next());    						
+      						if(respuesta==1) {
+      							System.out.println("COMPRA EXITOSA! ✅");
+      							carrito1.setId_cliente(user.getId_user());
+      							carrito1.registrarVenta();
+      						}else {
+      							System.out.println("COMPRA CANCELADA ❌");
+      							carrito1.listaProductos().clear();
+      						}
+      						break;
 	      				case 4:
 	      					//SALIR
-	      			        System.out.println("| - - - CERRANDO SESSION... - - - - -|");	
+	      			        System.out.println("CERRANDO SESSION...");	
 	      					break;
 	      				}
 	      		    }while(op_2 != 4);    
@@ -161,9 +174,9 @@ public class main {
 	      		  Login login1 = new Login(email3,pass3);
 	      		  Usuario user3 = login1.ingresar();
 	      		
-
       			 if(user3 != null && user3.getTipo()== 2) {
 	      			  System.out.println("ADMIN: "+user3.getApellido()+", "+user3.getNombre()+" ✅");
+	      			  //PROGRAMAMOS MENU ADMIN
 	      		  }else {
 	      			  System.out.println("No pudimos acceder a tu cuenta 'ADMIN' ❌");
 	      		  }
