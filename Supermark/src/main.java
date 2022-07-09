@@ -176,6 +176,7 @@ public class main {
 	      		
       			 if(user3 != null && user3.getTipo()== 2) {
 	      			  System.out.println("ADMIN: "+user3.getApellido()+", "+user3.getNombre()+" ✅");
+	      			  
 	      			  //PROGRAMAMOS MENU ADMIN
 	      			  Venta ventas1 = new Venta();
 	      			  System.out.println("----------------------------------------HISTORIAL DE VENTAS----------------------------------------");
