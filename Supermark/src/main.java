@@ -178,6 +178,7 @@ public class main {
 	      			  System.out.println("ADMIN: "+user3.getApellido()+", "+user3.getNombre()+" ✅");
 	      			  //PROGRAMAMOS MENU ADMIN
 	      			  Venta ventas1 = new Venta();
+	      			  System.out.println("----------------------------------------HISTORIAL DE VENTAS----------------------------------------");
 	      			  ventas1.mostrarHistorial();
 	      		  }else {
 	      			  System.out.println("No pudimos acceder a tu cuenta 'ADMIN' ❌");

@@ -80,7 +80,7 @@ public class Carrito {
 	    
 		for (int i = 0; i < this.listaProductos.size(); i++) {
 			String sql = "insert into venta values(null,"+"'"+fecha_hoy+"',"+"'"+this.total+"',"+"'"+this.id_cliente+"',"+"'"+i+"');";
-			System.out.println(sql);
+			//System.out.println(sql);
 			this.conexion = new Conexion();
 			this.conexion.realizaConsulta(sql);
 		}
