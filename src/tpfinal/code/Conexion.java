@@ -51,6 +51,11 @@ public class Conexion {
 		return rs;
 	}
 	
+	public void realizaConsulta(String sql) throws SQLException {
+		//System.out.println("Creando consulta...");
+		stmt = conn.createStatement();
+		stmt.executeUpdate(sql);
+	}
 
 
 	

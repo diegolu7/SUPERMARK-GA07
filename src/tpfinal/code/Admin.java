@@ -50,17 +50,65 @@ public class Admin {
 		System.out.println("Seleccionaste cargar productos");
 		
 		Producto productoNuevo = new Producto();
-		Principal principal = new Principal(productoNuevo);
+//		Principal principal = new Principal(productoNuevo);
+		Scanner teclado = new Scanner(System.in);
+		System.out.println("ingresa el id del producto");
+		int id_producto = teclado.nextInt();
+		System.out.println("Ingresa el nombre del producto entre ' '");
+		String nombre = teclado.next();
+		System.out.println("Ingresa el stock:");
+		int stock = teclado.nextInt();
+		System.out.println("Ingresa el precio:");
+		int precio = teclado.nextInt();
+		System.out.println("Ingresa la categoria entre ' ': ");
+		String categoria = teclado.next();
+		
+		//Producto productoNuevo = new Producto();
+		
+		productoNuevo.agregarProducto(id_producto,nombre,stock,precio,categoria);
+		teclado.close();
+	
 		
 	} else if (opcion==3){
 		System.out.println("Seleccionaste modificar los datos de productos cargados");
 		Producto productoActualizado =new Producto();
-		ModificacionProd actualizacion = new ModificacionProd(productoActualizado);
+//		ModificacionProd actualizacion = new ModificacionProd(productoActualizado);
+		
+		Scanner teclado = new Scanner(System.in);
+		
+		System.out.println("ingresa el id del producto a actualizar");
+		int id_producto = teclado.nextInt();
+		System.out.println("Ingresa el nombre del nuevo producto entre ' '");
+		String nombre = teclado.next();
+		System.out.println("Ingresa el stock:");
+		int stock = teclado.nextInt();
+		System.out.println("Ingresa el precio:");
+		int precio = teclado.nextInt();
+		System.out.println("Ingresa la categoria entre ' ': ");
+		String categoria = teclado.next();
+		
+//		Producto productoActualizado = new Producto();
+		
+		productoActualizado.modificarProducto(id_producto,nombre,stock,precio,categoria);
+		teclado.close();
+	
 		
 	} else if(opcion==4) {
 		System.out.println("Seleccionaste eliminar productos");
 		Producto productoEliminado = new Producto();
-		EliminacionProd eliminacion = new EliminacionProd(productoEliminado);
+	//	EliminacionProd eliminacion = new EliminacionProd(productoEliminado);
+		
+		Scanner teclado = new Scanner(System.in);
+		
+		System.out.println("Ingresa el id del producto que deseas eliminar");
+		int id_producto = teclado.nextInt();
+			
+//		Producto productoEliminado = new Producto();
+		
+		productoEliminado.eliminarProducto(id_producto);
+		teclado.close();
+		
+	
 	} else if(opcion==5) {
 		System.out.println("Seleccionaste ver todos los clientes que realizaron una compra");
 	

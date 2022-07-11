@@ -1,9 +1,10 @@
+
 package tpfinal.code;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class TestAdmin {
+public class main {
 
 	public static void main(String[] args) throws SQLException {
 		Login login = new Login("juan@correo.com","1234");
@@ -23,7 +24,7 @@ public class TestAdmin {
 			}
 			
 		} else {
-			System.out.println("Usuario o contraseña incorrectos");
+			System.out.println("Usuario o contraseÃ±a incorrectos");
 		
 		}
 	}

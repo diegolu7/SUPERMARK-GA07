@@ -30,6 +30,9 @@ public class Usuario {
 		
 	}
 	
+	public Usuario(int id_usuario, String nombre, String apellido1, String correo, int rol) {
+		// CONSTRUCTOR nuevo
+	}
 	//getter y setter
 	public int getId_usuario() {
 		return id_usuario;
