@@ -4,7 +4,7 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 public class Carrito {
 	private int id_cliente;
-	private ArrayList<Integer> listaProductos = new ArrayList();
+	private ArrayList<Integer> listaProductos = new ArrayList<Integer>();
 	private int limite;
 	private Conexion conexion;
 	private double total;
