@@ -280,7 +280,7 @@ public class main {
 									System.out.println("Saliendo del menu admin ...");
 								}
 								default:
-									throw new IllegalArgumentException("Unexpected value: " + op2);
+									//throw new IllegalArgumentException("Unexpected value: " + op2);
 								}
 							    
 							}while(op2!=0);
